@@ -1,25 +1,23 @@
-import React from "react";
-import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import React from 'react';
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
-import SongRow from "../SongRow";
-import Header from "../Header";
+import SongRow from '../SongRow';
+import Header from '../Header';
 
-import "./body.styles.css";
+import './body.styles.css';
 
-function Body({ spotify }) {
-  const discover_weekly = { images: [], tracks: [] };
-
+function Body({ user, playlistInfo, trackList, onClickTrack }) {
   return (
     <div className="body">
-      <Header spotify={spotify} />
+      <Header user={user} />
       <div className="body_info">
-        <img src={discover_weekly?.images[0]?.url} alt="" />
+        <img src={playlistInfo?.images[0]?.url} alt="" />
         <div className="body_infoText">
           <strong>Playlist</strong>
           <h2>Discover weekly</h2>
-          <p>{discover_weekly?.description}</p>
+          <p>{playlistInfo?.description}</p>
         </div>
       </div>
       <div className="body_songs">
@@ -29,11 +27,9 @@ function Body({ spotify }) {
           <MoreHorizIcon />
         </div>
         {/* List of songs */}
-        {discover_weekly?.tracks
-          .filter((item) => item.track.album.id !== null)
-          .map((item) => (
-            <SongRow track={item.track} />
-          ))}
+        {trackList.map(({ track }) => (
+          <SongRow key={track.id} track={track} onClick={onClickTrack} />
+        ))}
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import Player from "./Components/Player";
 import "./App.css";
 
 function App() {
-
   return (
     <div className="app">
       <Player />

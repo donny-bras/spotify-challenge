@@ -4,9 +4,7 @@ import { Avatar } from "@material-ui/core";
 
 import "./header.styles.css";
 
-function Header() {
-  const user = {};
-
+function Header({user}) {
   return (
     <div className="header">
       <div className="header_left">
